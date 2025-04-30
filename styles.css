@@ -1,0 +1,42 @@
+body{
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: black
+}
+
+.task-div{
+    display: flex;
+    align-items: center;
+    gap: 20%;
+    max-width: 100%;
+    height: 100%;
+    justify-content: center;
+    color: gray;
+    border: solid 1px gray;
+    
+}
+
+.task-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: solid 4px black;
+   
+    
+    
+    
+}
+
+.notepad{
+    width: 70vh;
+    height: 12vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    
+   
+}
+
