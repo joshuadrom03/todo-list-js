@@ -1,42 +1,58 @@
 body{
-    background-color: whitesmoke;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    color: black
+    background-color: rgb(82 82 91);
+    font-family: 'Roboto', sans-serif;
 }
 
-.task-div{
+body:hover{
+    cursor:default;
+}
+
+.main-div{
+    background-color: rgb(250 250 250);
+    padding: 30px;
+    border-radius: 30px;
     display: flex;
-    align-items: center;
-    gap: 20%;
-    max-width: 100%;
-    height: 100%;
-    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 15% 60% 25%;
+    height: 90vh;
+    
+}
+
+.navigation{
+    padding-top: 15vh;
+    background-color: rgba(63, 63, 70,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-left: 60px;
+    gap: 30px;
+
+    border-radius: 20px;
+    
+}
+
+.navigation> a{
     color: gray;
-    border: solid 1px gray;
-    
+    text-decoration: none;
+    font-weight: 800;
 }
 
-.task-container{
+a:hover{
+    background-color: rgba(63 ,63 ,70,0.5);
+    color: rgb(41 37 36);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.middle-panel{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    border: solid 4px black;
-   
-    
-    
-    
-}
-
-.notepad{
-    width: 70vh;
-    height: 12vh;
-    background-color: white;
-    display: flex;
+    align-items: center;
     justify-content: center;
-    
    
 }
-
