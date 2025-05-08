@@ -36,10 +36,8 @@ export function displayTodaysTasks() {
 
 
     const addTask = document.createElement("button")
-    const addImg = document.createElement("img");
-    addImg.src = "../assets/plus.svg";
+   
     addTask.className = "add-taskbtn";
-    addTask.append(addImg);
     addTask.textContent = "Add New Task";
 
    content_div.append(todayHeading,addTask);
@@ -61,30 +59,22 @@ export function displayTodaysTasks() {
         taskText.className = "task-columb";
         const taskTextContent = document.createElement("p");
         taskTextContent.textContent = task.text;
-        taskText.append(taskTextContent);
-
-        const taskCategory = document.createElement("div")
-        taskCategory.className = "category-columb";
         
         const taskCategoryContent = document.createElement("p");
-        taskCategoryContent.textContent = task.category;
-        taskCategory.append(taskCategoryContent);
-
-        const detailsImg = document.createElement("img")
-        detailsImg.src = "../assets/arrow.svg";
-        detailsImg.style.width = "10px";
-        detailsImg.style.height = "3px";
-        
+        taskCategoryContent.className = "category-columb"
+        taskCategoryContent.textContent = "# " + task.category;
+        taskText.append(taskTextContent, taskCategoryContent);
+       
         const detailsbtn = document.createElement("button");
         
         detailsbtn.className = "detailsbtn";
-        detailsbtn.appendChild(detailsImg);
+        
 
         detailsbtn.addEventListener("click", function(e){
             displayDetails();
         })
 
-        tasks_div.append(taskCheck,taskText,taskCategory,detailsbtn);
+        tasks_div.append(taskCheck,taskText,detailsbtn);
 
         content_div.append(tasks_div);
         
@@ -95,7 +85,6 @@ export function displayTodaysTasks() {
 
 function displayDetails(){
 
-    const task = [ ];
 
     const detailsDiv = document.querySelector(".details-panel");
     detailsDiv.innerHTML = " ";
@@ -119,10 +108,57 @@ function displayDetails(){
     const taskCategoryInput = document.createElement("select");
     taskCategoryInput.id = "task-category-input"
     taskCategoryInput.className = "task-input"
+    
 
-    formDiv.append(taskTextLabel,taskTextInput,taskDescriptionInput);
+    categories.forEach((option, index) =>{
+        const options = document.createElement("option")
+        options.value = `value${index + 1}`
+        options.textContent = option;
+        taskCategoryInput.append(options);
+    })
+
+    const buttonsDiv = document.createElement("div");
+    buttonsDiv.className = "details-tasks-btn"
+    buttonsDiv.id = "delete-taskbtn";
+
+    const deleteTaskbtn = document.createElement("button");
+    deleteTaskbtn.textContent = "Delete Task"
+    deleteTaskbtn.className = "delete-taskbtn"
+    deleteTaskbtn.addEventListener("click" ,function(e) {
+        deleteTask();
+        detailsDiv.innerHTML = " ";
+    })
+
+    const saveChangesbtn = document.createElement("button")
+    saveChangesbtn.textContent = "Save Changes";
+    saveChangesbtn.className = "save-taskbtn"
+    saveChangesbtn.addEventListener("click", function(e){
+        saveChanges();
+        detailsDiv.innerHTML = " ";
+    })
+
+    buttonsDiv.append(deleteTaskbtn,saveChangesbtn)
+
+    formDiv.append(
+        taskTextLabel,
+        taskTextInput,
+        taskDescriptionInput,
+        taskCategoryInput,
+        buttonsDiv);
 
     detailsDiv.append(formDiv)
 
+}
+
+function deleteTask(){
+    /*
+        create the logic to delete the task from the array
+    */
+}
+
+function saveChanges(){
+    /*
+        create the logic to update the values of the task
+    */
 }
 
