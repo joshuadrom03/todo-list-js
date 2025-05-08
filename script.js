@@ -1,20 +1,24 @@
-import { displayTodaysTasks } from "./pages/todaysTask.js"
+import { displayTodaysTasks, displayUpcomingTasks} from "./pages/todaysTask.js"
+
+
 
 //create the today page
 
-    function displayToday(){
+ function displayToday(){
         const today_link = document.getElementById("today")
-
         today_link.addEventListener("click", function(e){
-            /*
-            create the display of all the tasks and append it to the middle panel
-            */
-
             displayTodaysTasks();
         })
     }
-
     displayToday();
+
+ function displayUpcoming(){
+    const upcoming_link = document.getElementById("upcoming");
+    upcoming_link.addEventListener("click", function(e){
+        displayUpcomingTasks();
+    })
+ }
+ displayUpcoming();
 
 
 

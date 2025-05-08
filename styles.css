@@ -175,6 +175,7 @@ a:hover{
     height: 50px;
     color: rgb(63 63 70);
     font-size: 16px;
+    padding: 10px;
     
 }
 
@@ -196,8 +197,32 @@ a:hover{
     
     
 }
+
+.category-feild{
+    display: flex;
+    outline: none;
+    border: none;
+    gap: 20px;
+    align-items: center;
+}
+
 #task-category-input{
     width: 200px;
+}
+
+.date-field{
+    display: flex;
+    outline: none;
+    border: none;
+    gap: 20px;
+    align-items: center;
+}
+
+.date-input{
+    border: 1px dotted gray;
+    padding: 1px 30px;
+    background-color: rgba(63, 63, 70,0.001);
+    border-radius: 10px;
 }
 
 .details-tasks-btn{
