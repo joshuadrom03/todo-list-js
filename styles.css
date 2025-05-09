@@ -174,9 +174,14 @@ a:hover{
     width: 500px;
     height: 50px;
     color: rgb(63 63 70);
-    font-size: 16px;
+    font-size: 20px;
     padding: 10px;
     
+}
+
+
+.checked-task{
+    text-decoration: line-through;
 }
 
 .task-input:hover{
@@ -232,6 +237,23 @@ a:hover{
     justify-content: center;
     margin-top: 300px;
 }
+.add-task-form-btn{
+    width: 250px;
+    height: 50px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    border: 1px solid gray;
+    background-color: rgb(251 191 36);
+    font-size: 18px;
+    margin-left: 150px;
+    margin-top: 30px;
+}
+.add-task-form-btn:hover{
+    width: 255px;
+    height: 55px;
+    cursor: pointer;
+    border: 2px solid gray;
+}
 
 .delete-taskbtn{
     padding: 20px 50px;
@@ -241,6 +263,7 @@ a:hover{
     background-color: rgba(63, 63, 70,0.001);
     font-size: 18px;
 }
+
 
 .delete-taskbtn:hover{
     cursor: pointer;
