@@ -1,8 +1,6 @@
 /*
     make the save changes button update the task details
     make the add category button functional
-    display the tasks to the corresponding category
-   
 */
 const today = new Date();
 const year = today.getFullYear();
@@ -12,6 +10,7 @@ const formattedDate = `${year}-${month}-${day}`;
 
 const allTasks = [
     {
+        
         check: null,
         text: "Go to the gym",
         date: formattedDate,
@@ -19,6 +18,7 @@ const allTasks = [
         description: "Lose the belly fat "
     },
     {
+        
         check: null,
         text: "Finsh project by deadline",
         date: formattedDate,
@@ -26,12 +26,14 @@ const allTasks = [
         description: " finish meeting and do data analysis"
     },
     {
+        
         check: null,
         text: "Send money to mom",
         date: "2026/04/05",
         category: "Family",
         description: " pay mom back for the loan"
     },
+    
 ]
 
 
@@ -62,14 +64,15 @@ export function displayTodaysTasks() {
     addTask.textContent = "Add New Task";
     
     addTask.addEventListener("click", function(e){
-       addTaskForm();
+        
+       addTaskForm(tasks);
     
     })
     
    heading_div.append(todayHeading,addTask);
     main_div.append(heading_div);
     displayTasks(tasks);
-    console.log(tasks);
+    
     
 }
 
@@ -91,7 +94,9 @@ export function displayUpcomingTasks(){
     addTask.textContent = "Add New Task";
     
     addTask.addEventListener("click", function(e){
+       
         addTaskForm(tasks);
+        
     })
 
     heading_div.append(upcomingHeading,addTask);
@@ -162,19 +167,31 @@ function addTaskForm(tasks) {
     addTaskFormbtn.className = "add-task-form-btn"
     addTaskFormbtn.addEventListener("click", function(e){
         e.preventDefault();
+        addTask(tasks,taskTextInput.value,taskCategoryInput.value.textContent,taskDescriptionInput.value,dateInput.value);
        detailsTaskDiv.innerHTML = " ";
-        addTask()
+        
     })
 
     addtaskDiv.append(addHeading,taskTextInput,taskDescriptionInput,taskCategoryFieldset,dateFieldset,addTaskFormbtn);
     detailsTaskDiv.append(addtaskDiv);
 }
 
-function addTask(){
-
+function addTask(tasks,text,category,date,description){
+    const task = {
+        check:null,
+        text:text,
+        category:category,
+        date:date,
+        description:description
+    }
+    tasks.push(task)
+    console.log(tasks);
+    displayTasks(tasks);
 }
 
 function displayTasks(tasks){
+
+    
 
     content_div.innerHTML = " ";
     const main_div = document.querySelector(".middle-panel")
@@ -183,6 +200,8 @@ function displayTasks(tasks){
         
         const tasks_div = document.createElement("div");
         tasks_div.className = "task"
+
+        tasks.id = tasks.id ++;
        
         const taskCheck = document.createElement("div");
         const taskCheckContent = document.createElement("input");
@@ -207,9 +226,13 @@ function displayTasks(tasks){
         taskText.append(taskTextContent, taskCategoryContent);
        
         const detailsbtn = document.createElement("button");
+
+        const detailsDiv = document.querySelector(".details-panel");
         
         detailsbtn.className = "detailsbtn";
         detailsbtn.addEventListener("click", function(e){
+            const isHidden = detailsDiv.style.display == "none"
+            detailsDiv.style.display = isHidden ?  "flex": "none"
             displayDetails(tasks,tasksindex,task.text,task.description,task.category,task.date);
         })
 
@@ -231,6 +254,7 @@ function displayDetails(tasks,tasksindex,tasktext,taskdescription,taskcategory,t
     detailsDiv.innerHTML = " ";
     const formDiv = document.createElement("form");
     formDiv.className = "details-form";
+    
 
     const taskTextLabel = document.createElement("h1")
     taskTextLabel.textContent = "Task:";
@@ -338,4 +362,3 @@ function saveChanges(tasks,tasksindex,text,description,category,date){
             content_div.innerHTML = " "
             displayTasks(tasks);
 }
-

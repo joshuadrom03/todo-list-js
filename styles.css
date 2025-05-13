@@ -14,15 +14,17 @@ body:hover{
     padding: 30px;
     border-radius: 30px;
     display: flex;
-    flex-direction: column;
-    width: 90%;
-    
+    height: 90vh;
+    width: 100%;
+   
 }
 
 .content{
     display: grid;
-    grid-template-columns: 15% 60% 25%;
-    height: 90vh;
+    grid-template-columns: 20% 55% 25%;
+    height: 100%;
+    width: 90%;
+    
     
 }
 
@@ -36,6 +38,8 @@ body:hover{
     gap: 30px;
     position:relative;
     border-radius: 20px;
+    height: 75%;
+   
     
 }
 
@@ -60,6 +64,8 @@ a:hover{
     flex-direction: column;
     align-items: center;
     color: gray;
+    max-height: 90%;
+    overflow-y: auto;
    
 }
 
@@ -67,6 +73,50 @@ a:hover{
     display: flex;
     background-color: rgba(250,250,250, 0.1);
     border-radius: 20px;
+    height: 90%;
+    
+}
+
+@media (max-width: 600px){
+
+    .main-div{
+    background-color: rgb(250 250 250);
+    
+    border-radius: 30px;
+    display: flex;
+    height: 90%;
+    width: 100%;
+   
+}
+
+    .content{
+    display: grid;
+    grid-template-columns: 10vh 10% 10%;
+    height: 70%;
+    width: 90%;
+    
+    
+}
+    .navigation{
+    background-color: rgba(63, 63, 70,0.1);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 20px;
+    height: 90%;
+    font-size: 14px;
+    width: 100%;
+    padding-right: 60px;
+    }
+
+    .navigation> a{
+    color: gray;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 20px;
+    display: flex;
+    gap: 5px;
+}
 }
 
 /*svg */
