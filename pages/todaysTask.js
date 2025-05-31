@@ -1,6 +1,6 @@
 /*
-    make the save changes button update the task details
-    make the add category button functional
+   
+    get the text content of the options
 */
 const today = new Date();
 const year = today.getFullYear();
@@ -44,6 +44,32 @@ const categories = [
 
 const content_div = document.createElement("div")
 
+export function displayCategories() {
+    const navbar = document.querySelector(".navigation")
+    const categorySec = document.querySelector(".category-div")
+    categorySec.innerHTML = "";
+    categories.forEach((category, index) => {
+       const categoryDiv = document.createElement("div");
+        categoryDiv.textContent = "# " + category;
+        categoryDiv.className = "category"
+        categoryDiv.addEventListener("click", function(e){
+            /*
+            add function to display tasks based on category
+            */
+            const tasks = allTasks.filter((task) => task.category == category)
+            displayTasks(tasks);
+        })
+        categorySec.append(categoryDiv,addCategorybtn);
+  })
+  navbar.append(categorySec);
+}
+const addCategorybtn = document.createElement("button")
+  addCategorybtn.textContent = "Add a category"
+  addCategorybtn.className = "add-category-btn"
+
+  addCategorybtn.addEventListener("click",() =>{
+        addCategory();
+  })   
 
 export function displayTodaysTasks() {
 
@@ -108,6 +134,7 @@ function addTaskForm(tasks) {
 
     const detailsTaskDiv = document.querySelector(".details-panel")
     detailsTaskDiv.innerHTML = "";
+    detailsTaskDiv.style.visibility = "visible";
    
     const addtaskDiv = document.createElement("form")
     addtaskDiv.className = "details-form";
@@ -141,7 +168,7 @@ function addTaskForm(tasks) {
     
     categories.forEach((option, index) =>{
         const options = document.createElement("option")
-        options.value = `value${index + 1}`
+        options.value = option;
         options.textContent = option;
         taskCategoryInput.append(options);
     })
@@ -167,7 +194,7 @@ function addTaskForm(tasks) {
     addTaskFormbtn.className = "add-task-form-btn"
     addTaskFormbtn.addEventListener("click", function(e){
         e.preventDefault();
-        addTask(tasks,taskTextInput.value,taskCategoryInput.value.textContent,taskDescriptionInput.value,dateInput.value);
+        addTask(tasks,taskTextInput.value,taskCategoryInput.value,taskDescriptionInput.value,dateInput.value);
        detailsTaskDiv.innerHTML = " ";
         
     })
@@ -190,12 +217,9 @@ function addTask(tasks,text,category,date,description){
 }
 
 function displayTasks(tasks){
-
     
-
-    content_div.innerHTML = " ";
     const main_div = document.querySelector(".middle-panel")
-
+    content_div.innerHTML = " ";
     tasks.forEach((task, tasksindex) => {
         
         const tasks_div = document.createElement("div");
@@ -231,8 +255,8 @@ function displayTasks(tasks){
         
         detailsbtn.className = "detailsbtn";
         detailsbtn.addEventListener("click", function(e){
-            const isHidden = detailsDiv.style.display == "none"
-            detailsDiv.style.display = isHidden ?  "flex": "none"
+            
+            detailsDiv.style.visibility = detailsDiv.style.visibility === 'hidden' ? 'visible' : 'hidden';
             displayDetails(tasks,tasksindex,task.text,task.description,task.category,task.date);
         })
 
@@ -244,8 +268,6 @@ function displayTasks(tasks){
     
     main_div.append(content_div)
 }
-
-
 
 function displayDetails(tasks,tasksindex,tasktext,taskdescription,taskcategory,taskdate){
     
@@ -286,12 +308,14 @@ function displayDetails(tasks,tasksindex,tasktext,taskdescription,taskcategory,t
     
     categories.forEach((option, index) =>{
         const options = document.createElement("option")
-        options.value = `value${index + 1}`
+        options.value = option;
         options.textContent = option;
         taskCategoryInput.append(options);
     })
 
     taskCategoryFieldset.append(categoryLabel,taskCategoryInput);
+
+    
 
     const dateFieldset = document.createElement("fieldset");
     dateFieldset.className = "date-field";
@@ -327,7 +351,12 @@ function displayDetails(tasks,tasksindex,tasktext,taskdescription,taskcategory,t
     saveChangesbtn.className = "save-taskbtn"
     saveChangesbtn.addEventListener("click", function(e){
         e.preventDefault();
-        saveChanges(tasks,tasksindex,tasktext,taskdescription,taskcategory,taskdate);
+        saveChanges(tasks,
+                    tasksindex,
+                    taskTextInput.value,
+                    taskDescriptionInput.value,
+                    taskCategoryInput.value,
+                    dateInput.value );   //get the text content of the selected value
         detailsDiv.innerHTML = " ";
         displayTasks(tasks);
     })
@@ -360,5 +389,37 @@ function saveChanges(tasks,tasksindex,text,description,category,date){
         create the logic to update the values of the task
     */
             content_div.innerHTML = " "
+            allTasks[tasksindex].text = text;
+            allTasks[tasksindex].description = description;
+            allTasks[tasksindex].category = category;
+            allTasks[tasksindex].date = date;
+            console.log(tasks);
             displayTasks(tasks);
+}
+
+function addCategory(){
+    const contentDiv = document.querySelector(".middle-panel");
+    contentDiv.innerHTML = "";
+    const mainDiv = document.createElement("div");
+    
+    const categorySec = document.querySelector(".category-container")
+   
+    const inputLabel = document.createElement("label");
+    inputLabel.textContent = "Enter Category name: "
+
+    const inputText = document.createElement("input")
+    inputText.type = "text"
+
+    const addCategorybtn = document.createElement("button");
+    addCategorybtn.textContent = "Add"
+    addCategorybtn.className = "add-category-btn2"
+    addCategorybtn.addEventListener("click",()=>{
+        categories.push(inputText.value)
+        displayCategories();
+        
+    })
+
+    mainDiv.append(inputLabel,inputText,addCategorybtn);
+
+    contentDiv.append(mainDiv);
 }

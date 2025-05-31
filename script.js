@@ -1,4 +1,4 @@
-import { displayTodaysTasks, displayUpcomingTasks} from "./pages/todaysTask.js"
+import { displayCategories, displayTodaysTasks, displayUpcomingTasks} from "./pages/todaysTask.js"
 
 
 
@@ -10,7 +10,7 @@ import { displayTodaysTasks, displayUpcomingTasks} from "./pages/todaysTask.js"
             displayTodaysTasks();
         })
     }
-    displayToday();
+   
 
  function displayUpcoming(){
     const upcoming_link = document.getElementById("upcoming");
@@ -18,8 +18,10 @@ import { displayTodaysTasks, displayUpcomingTasks} from "./pages/todaysTask.js"
         displayUpcomingTasks();
     })
  }
- displayUpcoming();
 
+ displayToday();
+ displayUpcoming();
+ displayCategories();
 
 
 
